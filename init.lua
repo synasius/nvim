@@ -16,6 +16,7 @@ require("nasio.bufferline")
 require("nasio.statusline")
 require("nasio.colorizer")
 require("nasio.trouble")
+require("nasio.neogit")
 
 -- other mapping
 require("nasio.mappings")

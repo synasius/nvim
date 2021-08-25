@@ -97,6 +97,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sinasio/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
+  neogit = {
+    loaded = true,
+    path = "/home/sinasio/.local/share/nvim/site/pack/packer/start/neogit"
+  },
   ["nvim-bufferline.lua"] = {
     loaded = true,
     path = "/home/sinasio/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"

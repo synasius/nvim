@@ -5,7 +5,7 @@ local trouble = require("trouble.providers.telescope")
 
 require("telescope").setup({
 	defaults = {
-		file_ignore_patterns = { "node_modules", "*.meta" },
+		file_ignore_patterns = { "node_modules", "%.meta$", "%.sql" },
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,

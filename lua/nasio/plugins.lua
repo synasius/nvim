@@ -51,13 +51,10 @@ require("packer").startup(function()
 		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
 	})
 
-	use({
-		"lewis6991/gitsigns.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-	})
-	use({
-		"lukas-reineke/indent-blankline.nvim",
-	})
+	-- Git utilities
+	use({ "lewis6991/gitsigns.nvim", requires = "nvim-lua/plenary.nvim" })
+	use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
+	use({ "lukas-reineke/indent-blankline.nvim" })
 
 	-- Debugging
 	use("mfussenegger/nvim-dap")
@@ -68,10 +65,7 @@ require("packer").startup(function()
 		requires = { "kyazdani42/nvim-web-devicons" },
 	})
 	-- bufferline
-	use({
-		"akinsho/nvim-bufferline.lua",
-		requires = "kyazdani42/nvim-web-devicons",
-	})
+	use({ "akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons" })
 
 	-- Colorizer
 	use("norcalli/nvim-colorizer.lua")
