@@ -29,3 +29,6 @@ vim.opt.foldenable = true
 vim.opt.foldlevelstart = 10
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- use treesitter for folding
+
+-- numbering
+vim.opt.number = true

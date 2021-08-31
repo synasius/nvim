@@ -11,5 +11,3 @@ vim.g.nvim_tree_show_icons = {
 	folders = 1,
 	files = 1,
 }
-
-vim.api.nvim_set_keymap("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { noremap = true })
