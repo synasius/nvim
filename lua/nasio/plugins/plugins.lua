@@ -81,20 +81,47 @@ require("packer").startup(function()
 		end,
 	})
 
-	-- completion
-	use("neovim/nvim-lspconfig")
-	use("kabouzeid/nvim-lspinstall")
-	use("hrsh7th/nvim-compe")
-	use({ "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" })
-
-	-- snippets with completion integration
-	use("hrsh7th/vim-vsnip")
-	use("hrsh7th/vim-vsnip-integ")
-	use("rafamadriz/friendly-snippets")
+	-- snippet
+	use({
+		"L3MON4D3/LuaSnip",
+		wants = "friendly-snippets",
+    config = function()
+      require("nasio.plugins.configs.luasnip")
+    end
+	})
+	use({ "rafamadriz/friendly-snippets" })
 	use("Nash0x7E2/awesome-flutter-snippets")
 
-	-- icons for lsp completion items
-	use("onsails/lspkind-nvim")
+	-- completion
+	use({
+		"akinsho/flutter-tools.nvim",
+		requires = "nvim-lua/plenary.nvim",
+	})
+
+	use({
+		"hrsh7th/nvim-cmp",
+		requires = {
+			"onsails/lspkind-nvim",
+		},
+		config = function()
+			require("nasio.plugins.configs.cmp")
+		end,
+	})
+
+	use({
+		"neovim/nvim-lspconfig",
+		requires = "kabouzeid/nvim-lspinstall",
+		config = function()
+			require("nasio.plugins.configs.lspconfig")
+		end,
+	})
+
+	-- completion sources
+	use({ "saadparwaiz1/cmp_luasnip" })
+	use({ "hrsh7th/cmp-nvim-lua" })
+	use({ "hrsh7th/cmp-nvim-lsp" })
+	use({ "hrsh7th/cmp-buffer" })
+	use({ "hrsh7th/cmp-path" })
 
 	-- file managing , picker, fuzzy finder
 	use({
