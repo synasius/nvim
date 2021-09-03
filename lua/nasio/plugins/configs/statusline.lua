@@ -4,7 +4,7 @@ local lsp = require("feline.providers.lsp")
 -- icons and style taken from nvchad
 local icon_styles = {
 	left = "",
-	right = " ",
+	right = "",
 	main_icon = "  ",
 	vi_mode_icon = " ",
 	position_icon = " ",
@@ -29,21 +29,29 @@ components.left.active[1] = {
 		str = icon_styles.right,
 		hl = {
 			fg = colors.blue,
-			bg = colors.bg_highlight,
+			bg = colors.fg_gutter,
 		},
 	},
 }
 
 components.left.active[2] = {
+	provider = icon_styles.right,
+	hl = {
+		fg = colors.fg_gutter,
+		bg = colors.bg_highlight,
+	},
+}
+
+components.left.active[3] = {
 	provider = function()
 		local filename = vim.fn.expand("%:t")
 		local extension = vim.fn.expand("%:e")
 		local icon = require("nvim-web-devicons").get_icon(filename, extension)
 		if icon == nil then
-			icon = ""
+			icon = "  "
 			return icon
 		end
-		return icon .. " " .. filename .. " "
+		return " " .. icon .. " " .. filename .. " "
 	end,
 	hl = {
 		fg = colors.fg,
@@ -54,12 +62,20 @@ components.left.active[2] = {
 		str = icon_styles.right,
 		hl = {
 			fg = colors.bg_highlight,
-			bg = colors.bg,
+			bg = colors.fg_gutter,
 		},
 	},
 }
 
-components.left.active[3] = {
+components.left.active[4] = {
+	provider = icon_styles.right,
+	hl = {
+		fg = colors.fg_gutter,
+		bg = colors.bg_highlight,
+	},
+}
+
+components.left.active[5] = {
 	provider = function()
 		local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 		return "  " .. dir_name .. " "
@@ -71,23 +87,31 @@ components.left.active[3] = {
 	},
 	right_sep = {
 		str = icon_styles.right,
-		hi = {
+		hl = {
 			fg = colors.bg,
-			bg = colors.bg_dark,
+			bg = colors.fg_gutter,
 		},
 	},
 }
 
-components.left.active[4] = {
+components.left.active[6] = {
+	provider = icon_styles.right,
+	hl = {
+		fg = colors.fg_gutter,
+		bg = colors.bg_dark,
+	},
+}
+
+components.left.active[7] = {
 	provider = "git_diff_added",
 	hl = {
 		fg = colors.green1,
 		bg = colors.bg_dark,
 	},
-	icon = " ",
+	icon = "  ",
 }
 -- diffModfified
-components.left.active[5] = {
+components.left.active[8] = {
 	provider = "git_diff_changed",
 	hl = {
 		fg = colors.blue1,
@@ -96,7 +120,7 @@ components.left.active[5] = {
 	icon = "  ",
 }
 -- diffRemove
-components.left.active[6] = {
+components.left.active[9] = {
 	provider = "git_diff_removed",
 	hl = {
 		fg = colors.red1,
@@ -105,7 +129,7 @@ components.left.active[6] = {
 	icon = "  ",
 }
 
-components.left.active[7] = {
+components.left.active[10] = {
 	provider = "diagnostic_errors",
 	enabled = function()
 		return lsp.diagnostics_exist("Error")
@@ -114,7 +138,7 @@ components.left.active[7] = {
 	icon = "  ",
 }
 
-components.left.active[8] = {
+components.left.active[11] = {
 	provider = "diagnostic_warnings",
 	enabled = function()
 		return lsp.diagnostics_exist("Warning")
@@ -123,7 +147,7 @@ components.left.active[8] = {
 	icon = "  ",
 }
 
-components.left.active[9] = {
+components.left.active[12] = {
 	provider = "diagnostic_hints",
 	enabled = function()
 		return lsp.diagnostics_exist("Hint")
@@ -132,7 +156,7 @@ components.left.active[9] = {
 	icon = "  ",
 }
 
-components.left.active[10] = {
+components.left.active[13] = {
 	provider = "diagnostic_info",
 	enabled = function()
 		return lsp.diagnostics_exist("Information")
@@ -177,7 +201,7 @@ components.mid.active[1] = {
 components.right.active[1] = {
 	provider = function()
 		if next(vim.lsp.buf_get_clients()) ~= nil then
-			return "  LSP"
+			return "   LSP"
 		else
 			return ""
 		end
