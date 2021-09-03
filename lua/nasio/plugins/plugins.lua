@@ -73,6 +73,14 @@ require("packer").startup(function()
 		end,
 	})
 
+	-- smooth scroll
+	use({
+		"karb94/neoscroll.nvim",
+		config = function()
+			require("neoscroll").setup()
+		end,
+	})
+
 	-- completion
 	use("neovim/nvim-lspconfig")
 	use("kabouzeid/nvim-lspinstall")
