@@ -12,12 +12,16 @@ local icon_styles = {
 
 -- Initialize the components table
 local components = {
-	left = { active = {}, inactive = {} },
-	mid = { active = {}, inactive = {} },
-	right = { active = {}, inactive = {} },
+	active = {},
+	inactive = {},
 }
 
-components.left.active[1] = {
+-- these are the three sections: left, mid, right
+table.insert(components.active, {})
+table.insert(components.active, {})
+table.insert(components.active, {})
+
+table.insert(components.active[1], {
 	provider = icon_styles.main_icon,
 
 	hl = {
@@ -32,17 +36,17 @@ components.left.active[1] = {
 			bg = colors.fg_gutter,
 		},
 	},
-}
+})
 
-components.left.active[2] = {
+table.insert(components.active[1], {
 	provider = icon_styles.right,
 	hl = {
 		fg = colors.fg_gutter,
 		bg = colors.bg_highlight,
 	},
-}
+})
 
-components.left.active[3] = {
+table.insert(components.active[1], {
 	provider = function()
 		local filename = vim.fn.expand("%:t")
 		local extension = vim.fn.expand("%:e")
@@ -65,17 +69,17 @@ components.left.active[3] = {
 			bg = colors.fg_gutter,
 		},
 	},
-}
+})
 
-components.left.active[4] = {
+table.insert(components.active[1], {
 	provider = icon_styles.right,
 	hl = {
 		fg = colors.fg_gutter,
 		bg = colors.bg_highlight,
 	},
-}
+})
 
-components.left.active[5] = {
+table.insert(components.active[1], {
 	provider = function()
 		local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 		return "  " .. dir_name .. " "
@@ -92,80 +96,82 @@ components.left.active[5] = {
 			bg = colors.fg_gutter,
 		},
 	},
-}
+})
 
-components.left.active[6] = {
+table.insert(components.active[1], {
 	provider = icon_styles.right,
 	hl = {
 		fg = colors.fg_gutter,
 		bg = colors.bg_dark,
 	},
-}
+})
 
-components.left.active[7] = {
+table.insert(components.active[1], {
 	provider = "git_diff_added",
 	hl = {
 		fg = colors.green1,
 		bg = colors.bg_dark,
 	},
 	icon = "  ",
-}
+})
+
 -- diffModfified
-components.left.active[8] = {
+table.insert(components.active[1], {
 	provider = "git_diff_changed",
 	hl = {
 		fg = colors.blue1,
 		bg = colors.bg_dark,
 	},
 	icon = "  ",
-}
+})
+
 -- diffRemove
-components.left.active[9] = {
+table.insert(components.active[1], {
 	provider = "git_diff_removed",
 	hl = {
 		fg = colors.red1,
 		bg = colors.bg_dark,
 	},
 	icon = "  ",
-}
+})
 
-components.left.active[10] = {
+table.insert(components.active[1], {
 	provider = "diagnostic_errors",
 	enabled = function()
 		return lsp.diagnostics_exist("Error")
 	end,
 	hl = { fg = colors.red },
 	icon = "  ",
-}
+})
 
-components.left.active[11] = {
+table.insert(components.active[1], {
 	provider = "diagnostic_warnings",
 	enabled = function()
 		return lsp.diagnostics_exist("Warning")
 	end,
 	hl = { fg = colors.yellow },
 	icon = "  ",
-}
+})
 
-components.left.active[12] = {
+table.insert(components.active[1], {
 	provider = "diagnostic_hints",
 	enabled = function()
 		return lsp.diagnostics_exist("Hint")
 	end,
 	hl = { fg = colors.fg_dark },
 	icon = "  ",
-}
+})
 
-components.left.active[13] = {
+table.insert(components.active[1], {
 	provider = "diagnostic_info",
 	enabled = function()
 		return lsp.diagnostics_exist("Information")
 	end,
 	hl = { fg = colors.green },
 	icon = "  ",
-}
+})
 
-components.mid.active[1] = {
+table.insert(components.active[2], {
 	provider = function()
 		local Lsp = vim.lsp.util.get_progress_messages()[1]
 		if Lsp then
@@ -196,9 +202,9 @@ components.mid.active[1] = {
 		return ""
 	end,
 	hl = { fg = colors.green },
-}
+})
 
-components.right.active[1] = {
+table.insert(components.active[3], {
 	provider = function()
 		if next(vim.lsp.buf_get_clients()) ~= nil then
 			return "   LSP"
@@ -210,9 +216,9 @@ components.right.active[1] = {
 		fg = colors.fg_dark,
 		bg = colors.bg_dark,
 	},
-}
+})
 
-components.right.active[2] = {
+table.insert(components.active[3], {
 	-- taken from: https://github.com/hoob3rt/lualine.nvim/blob/master/lua/lualine/components/branch.lua
 	provider = function()
 		local git_branch = ""
@@ -268,15 +274,15 @@ components.right.active[2] = {
 		fg = colors.fg_dark,
 		bg = colors.bg_dark,
 	},
-}
+})
 
-components.right.active[3] = {
+table.insert(components.active[3], {
 	provider = " " .. icon_styles.left,
 	hl = {
 		fg = colors.fg_gutter,
 		bg = colors.bg_dark,
 	},
-}
+})
 
 local mode_colors = {
 	["n"] = { "NORMAL", colors.red },
@@ -308,7 +314,7 @@ local chad_mode_hl = function()
 	}
 end
 
-components.right.active[4] = {
+table.insert(components.active[3], {
 	provider = icon_styles.left,
 	hl = function()
 		return {
@@ -316,9 +322,9 @@ components.right.active[4] = {
 			bg = colors.fg_gutter,
 		}
 	end,
-}
+})
 
-components.right.active[5] = {
+table.insert(components.active[3], {
 	provider = icon_styles.vi_mode_icon,
 	hl = function()
 		return {
@@ -326,40 +332,40 @@ components.right.active[5] = {
 			bg = mode_colors[vim.fn.mode()][2],
 		}
 	end,
-}
+})
 
-components.right.active[6] = {
+table.insert(components.active[3], {
 	provider = function()
 		return " " .. mode_colors[vim.fn.mode()][1] .. " "
 	end,
 	hl = chad_mode_hl,
-}
+})
 
-components.right.active[7] = {
+table.insert(components.active[3], {
 	provider = icon_styles.left,
 	hl = {
 		fg = colors.fg_gutter,
 		bg = colors.bg_highlight,
 	},
-}
+})
 
-components.right.active[8] = {
+table.insert(components.active[3], {
 	provider = icon_styles.left,
 	hl = {
 		fg = colors.green,
 		bg = colors.fg_gutter,
 	},
-}
+})
 
-components.right.active[9] = {
+table.insert(components.active[3], {
 	provider = icon_styles.position_icon,
 	hl = {
 		fg = colors.bg_dark,
 		bg = colors.green,
 	},
-}
+})
 
-components.right.active[10] = {
+table.insert(components.active[3], {
 	provider = function()
 		local current_line = vim.fn.line(".")
 		local total_line = vim.fn.line("$")
@@ -377,7 +383,7 @@ components.right.active[10] = {
 		fg = colors.green,
 		bg = colors.bg_highlight,
 	},
-}
+})
 
 require("feline").setup({
 	default_bg = colors.bg_dark,
