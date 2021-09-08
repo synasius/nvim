@@ -1,6 +1,6 @@
 -- Here we define some general useful mappings not related to any plugin
 
-vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>luafile %<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>R", "<cmd>luafile %<CR>", { noremap = true })
 
 -- These are handful mappings to encode strings in base64 and viceversa
 vim.api.nvim_set_keymap("v", "<F2>", 'c<c-r>=system("base64 -w 0", @")<cr><esc>', { noremap = true })

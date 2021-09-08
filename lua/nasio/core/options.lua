@@ -1,5 +1,5 @@
 -- Leader is comma
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
 -- Set the colorscheme
 vim.opt.termguicolors = true

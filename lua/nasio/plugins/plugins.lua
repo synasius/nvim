@@ -85,9 +85,9 @@ require("packer").startup(function()
 	use({
 		"L3MON4D3/LuaSnip",
 		wants = "friendly-snippets",
-    config = function()
-      require("nasio.plugins.configs.luasnip")
-    end
+		config = function()
+			require("nasio.plugins.configs.luasnip")
+		end,
 	})
 	use({ "rafamadriz/friendly-snippets" })
 	use("Nash0x7E2/awesome-flutter-snippets")
@@ -127,7 +127,7 @@ require("packer").startup(function()
 	use({
 		"kyazdani42/nvim-tree.lua",
 		requires = { "kyazdani42/nvim-web-devicons" },
-		cmd = "NvimTreeToggle",
+		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
 		config = function()
 			require("nasio.plugins.configs.nvimtree")
 		end,
@@ -170,6 +170,13 @@ require("packer").startup(function()
 			})
 		end,
 	})
+
+	use({
+    "terrortylor/nvim-comment",
+    config = function()
+      require("nasio.plugins.configs.nvimcomment")
+    end
+  })
 end)
 
 -- Auto compile when there are changes in plugins.lua
