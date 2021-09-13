@@ -386,7 +386,7 @@ table.insert(components.active[3], {
 })
 
 require("feline").setup({
-	default_bg = colors.bg_dark,
-	default_fg = colors.fg,
+	bg = colors.bg_dark,
+	fg = colors.fg,
 	components = components,
 })
