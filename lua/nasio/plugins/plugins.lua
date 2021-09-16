@@ -167,16 +167,21 @@ require("packer").startup(function()
 		config = function()
 			require("trim").setup({
 				disable = { "markdown" },
+				patterns = {
+					[[%s/\s\+$//e]],
+					[[%s/\($\n\s*\)\+\%$//]],
+					[[%s/\%^\n\+//]],
+				},
 			})
 		end,
 	})
 
 	use({
-    "terrortylor/nvim-comment",
-    config = function()
-      require("nasio.plugins.configs.nvimcomment")
-    end
-  })
+		"terrortylor/nvim-comment",
+		config = function()
+			require("nasio.plugins.configs.nvimcomment")
+		end,
+	})
 end)
 
 -- Auto compile when there are changes in plugins.lua

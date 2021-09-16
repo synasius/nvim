@@ -113,7 +113,7 @@ local function setup_servers()
 			config.root_dir = vim.loop.cwd
 			config.filetypes = { "python", "lua" }
 			config.settings = {
-				rootMarkers = { ".git/" },
+				rootMarkers = { ".git/", "pyproject.toml" },
 				languages = {
 					python = { black, flake8, isort, mypy },
 					lua = { stylua },

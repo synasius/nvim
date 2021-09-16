@@ -6,4 +6,5 @@ return {
 		"%f:%l:%c: %tote: %m",
 	},
 	lintSource = "mypy",
+  prefix = "mypy",
 }
