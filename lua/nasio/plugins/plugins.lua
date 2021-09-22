@@ -38,6 +38,9 @@ require("packer").startup(function()
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("nasio.plugins.configs.blankline")
+		end,
 	})
 
 	use({
@@ -155,6 +158,16 @@ require("packer").startup(function()
 		end,
 		setup = function()
 			require("nasio.plugins.mappings.trouble")
+		end,
+	})
+
+	use({
+		"glepnir/dashboard-nvim",
+		config = function()
+			require("nasio.plugins.configs.dashboard")
+		end,
+		setup = function()
+			require("nasio.plugins.mappings.dashboard")
 		end,
 	})
 
