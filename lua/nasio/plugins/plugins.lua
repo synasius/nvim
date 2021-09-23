@@ -126,6 +126,14 @@ require("packer").startup(function()
 	use({ "hrsh7th/cmp-buffer" })
 	use({ "hrsh7th/cmp-path" })
 
+	-- other lsp related utilities
+	use({
+		"kosayoda/nvim-lightbulb",
+		config = function()
+			vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
+		end,
+	})
+
 	-- file managing , picker, fuzzy finder
 	use({
 		"kyazdani42/nvim-tree.lua",

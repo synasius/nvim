@@ -123,37 +123,28 @@ end
 setup_servers()
 
 -- define custom diagnostics
-vim.fn.sign_define(
-	"DiagnosticSignWarn",
-	{ text = "", numhl = "DiagnosticSignWarn", texthl = "DiagnosticSignWarn" }
-)
+vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "DiagnosticSignWarn", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define(
 	"DiagnosticSignError",
 	{ text = "", numhl = "DiagnosticSignError", texthl = "DiagnosticSignError" }
 )
-vim.fn.sign_define(
-	"DiagnosticSignInfo",
-	{ text = "", numhl = "DiagnosticSignInfo", texthl = "DiagnosticSignInfo" }
-)
-vim.fn.sign_define(
-	"DiagnosticSignHint",
-	{ text = "", numhl = "DiagnosticSignHint", texthl = "DiagnosticSignHint" }
-)
+vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "DiagnosticSignInfo", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticSignHint", texthl = "DiagnosticSignHint" })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-   virtual_text = {
-      prefix = "",
-      spacing = 0,
-   },
-   signs = true,
-   underline = true,
-   update_in_insert = false, -- update diagnostics insert mode
+	virtual_text = {
+		prefix = "",
+		spacing = 0,
+	},
+	signs = true,
+	underline = true,
+	update_in_insert = false, -- update diagnostics insert mode
 })
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-   border = "single",
+	border = "single",
 })
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-   border = "single",
+	border = "single",
 })
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim

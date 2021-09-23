@@ -32,3 +32,5 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- use treesitter for folding
 
 -- numbering
 vim.opt.number = true
+
+vim.opt.updatetime = 500
